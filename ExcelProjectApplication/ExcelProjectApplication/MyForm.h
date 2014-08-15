@@ -34,6 +34,10 @@ namespace ExcelProjectApplication {
 				delete components;
 			}
 		}
+	private: System::Windows::Forms::Button^  exitButton;
+	protected: 
+
+	protected: 
 
 	private:
 		/// <summary>
@@ -48,12 +52,33 @@ namespace ExcelProjectApplication {
 		/// </summary>
 		void InitializeComponent(void)
 		{
-			this->components = gcnew System::ComponentModel::Container();
-			this->Size = System::Drawing::Size(300,300);
-			this->Text = L"MyForm";
-			this->Padding = System::Windows::Forms::Padding(0);
+			this->exitButton = (gcnew System::Windows::Forms::Button());
+			this->SuspendLayout();
+			// 
+			// exitButton
+			// 
+			this->exitButton->Location = System::Drawing::Point(12, 524);
+			this->exitButton->Name = L"exitButton";
+			this->exitButton->Size = System::Drawing::Size(193, 85);
+			this->exitButton->TabIndex = 0;
+			this->exitButton->Text = L"Exit";
+			this->exitButton->UseVisualStyleBackColor = true;
+			this->exitButton->Click += gcnew System::EventHandler(this, &MyForm::button1_Click);
+			// 
+			// MyForm
+			// 
+			this->AutoScaleDimensions = System::Drawing::SizeF(6, 13);
 			this->AutoScaleMode = System::Windows::Forms::AutoScaleMode::Font;
+			this->ClientSize = System::Drawing::Size(1121, 621);
+			this->Controls->Add(this->exitButton);
+			this->Name = L"MyForm";
+			this->Text = L"MyForm";
+			this->ResumeLayout(false);
+
 		}
 #pragma endregion
+	private: System::Void button1_Click(System::Object^  sender, System::EventArgs^  e) {
+				 Application::Exit();
+			 }
 	};
 }
