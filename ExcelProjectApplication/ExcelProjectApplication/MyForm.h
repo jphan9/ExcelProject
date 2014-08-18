@@ -205,7 +205,7 @@ namespace ExcelProjectApplication {
 					 String^ path = System::IO::Path::GetDirectoryName(openFileDialog1->FileName);
 					 //MessageBox::Show(path = path+"\\"+fileName,"Directory");
 					 path = path+"\\"+fileName;
-					 heatmapTemplateTextBox->Text = heatmapTemplateTextBox->Text + " " + path + " ";
+					 heatmapTemplateTextBox->Text = " " + path + " ";
 				}
 			 }
 
@@ -222,9 +222,10 @@ private: System::Void dataLowButton_Click(System::Object^  sender, System::Event
 				String^ path = System::IO::Path::GetDirectoryName(openFileDialog1->FileName);
 				//MessageBox::Show(path = path+"\\"+fileName,"Directory");
 				path = path+"\\"+fileName;
-				dataLowtextBox->Text = heatmapTemplateTextBox->Text + " " + path + " ";
+				dataLowtextBox->Text = " " + path + " ";
 			}
 		 }
+
 private: System::Void dataMedButton_Click(System::Object^  sender, System::EventArgs^  e) {
 			OpenFileDialog^ openFileDialog1 = gcnew OpenFileDialog;
 				 
@@ -238,7 +239,7 @@ private: System::Void dataMedButton_Click(System::Object^  sender, System::Event
 				String^ path = System::IO::Path::GetDirectoryName(openFileDialog1->FileName);
 				//MessageBox::Show(path = path+"\\"+fileName,"Directory");
 				path = path+"\\"+fileName;
-				dataMedtextBox->Text = heatmapTemplateTextBox->Text + " " + path + " ";
+				dataMedtextBox->Text = " " + path + " ";
 			}
 		 }
 };
