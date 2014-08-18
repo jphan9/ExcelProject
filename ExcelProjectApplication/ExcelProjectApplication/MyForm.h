@@ -41,6 +41,9 @@ namespace ExcelProjectApplication {
 	private: System::Windows::Forms::TextBox^  dataLowtextBox;
 	private: System::Windows::Forms::Button^  dataLowButton;
 	private: System::Windows::Forms::Label^  dataLowLabel;
+	private: System::Windows::Forms::TextBox^  dataMedtextBox;
+	private: System::Windows::Forms::Button^  dataMedButton;
+	private: System::Windows::Forms::Label^  dataMedLabel;
 
 
 	protected: 
@@ -67,6 +70,9 @@ namespace ExcelProjectApplication {
 			this->dataLowtextBox = (gcnew System::Windows::Forms::TextBox());
 			this->dataLowButton = (gcnew System::Windows::Forms::Button());
 			this->dataLowLabel = (gcnew System::Windows::Forms::Label());
+			this->dataMedtextBox = (gcnew System::Windows::Forms::TextBox());
+			this->dataMedButton = (gcnew System::Windows::Forms::Button());
+			this->dataMedLabel = (gcnew System::Windows::Forms::Label());
 			this->SuspendLayout();
 			// 
 			// exitButton
@@ -122,21 +128,52 @@ namespace ExcelProjectApplication {
 			this->dataLowButton->TabIndex = 5;
 			this->dataLowButton->Text = L"Browse";
 			this->dataLowButton->UseVisualStyleBackColor = true;
+			this->dataLowButton->Click += gcnew System::EventHandler(this, &MyForm::dataLowButton_Click);
 			// 
 			// dataLowLabel
 			// 
 			this->dataLowLabel->AutoSize = true;
-			this->dataLowLabel->Location = System::Drawing::Point(42, 84);
+			this->dataLowLabel->Location = System::Drawing::Point(39, 84);
 			this->dataLowLabel->Name = L"dataLowLabel";
 			this->dataLowLabel->Size = System::Drawing::Size(153, 13);
 			this->dataLowLabel->TabIndex = 6;
 			this->dataLowLabel->Text = L"Choose the low machine data: ";
+			// 
+			// dataMedtextBox
+			// 
+			this->dataMedtextBox->Location = System::Drawing::Point(42, 145);
+			this->dataMedtextBox->Name = L"dataMedtextBox";
+			this->dataMedtextBox->ReadOnly = true;
+			this->dataMedtextBox->Size = System::Drawing::Size(398, 20);
+			this->dataMedtextBox->TabIndex = 7;
+			// 
+			// dataMedButton
+			// 
+			this->dataMedButton->Location = System::Drawing::Point(446, 141);
+			this->dataMedButton->Name = L"dataMedButton";
+			this->dataMedButton->Size = System::Drawing::Size(75, 23);
+			this->dataMedButton->TabIndex = 8;
+			this->dataMedButton->Text = L"Browse";
+			this->dataMedButton->UseVisualStyleBackColor = true;
+			this->dataMedButton->Click += gcnew System::EventHandler(this, &MyForm::dataMedButton_Click);
+			// 
+			// dataMedLabel
+			// 
+			this->dataMedLabel->AutoSize = true;
+			this->dataMedLabel->Location = System::Drawing::Point(39, 129);
+			this->dataMedLabel->Name = L"dataMedLabel";
+			this->dataMedLabel->Size = System::Drawing::Size(157, 13);
+			this->dataMedLabel->TabIndex = 9;
+			this->dataMedLabel->Text = L"Choose the med machine data: ";
 			// 
 			// MyForm
 			// 
 			this->AutoScaleDimensions = System::Drawing::SizeF(6, 13);
 			this->AutoScaleMode = System::Windows::Forms::AutoScaleMode::Font;
 			this->ClientSize = System::Drawing::Size(1121, 621);
+			this->Controls->Add(this->dataMedLabel);
+			this->Controls->Add(this->dataMedButton);
+			this->Controls->Add(this->dataMedtextBox);
 			this->Controls->Add(this->dataLowLabel);
 			this->Controls->Add(this->dataLowButton);
 			this->Controls->Add(this->dataLowtextBox);
@@ -172,5 +209,37 @@ namespace ExcelProjectApplication {
 				}
 			 }
 
+private: System::Void dataLowButton_Click(System::Object^  sender, System::EventArgs^  e) {
+			OpenFileDialog^ openFileDialog1 = gcnew OpenFileDialog;
+				 
+			openFileDialog1->Filter = "pdf files |*.PDF";
+
+			// Show the Dialog.
+			// If the user clicked OK in the dialog end a file was selected, open it.
+			if(openFileDialog1->ShowDialog() == System::Windows::Forms::DialogResult::OK)
+			{
+				String^ fileName = System::IO::Path::GetFileName(openFileDialog1->FileName);
+				String^ path = System::IO::Path::GetDirectoryName(openFileDialog1->FileName);
+				//MessageBox::Show(path = path+"\\"+fileName,"Directory");
+				path = path+"\\"+fileName;
+				dataLowtextBox->Text = heatmapTemplateTextBox->Text + " " + path + " ";
+			}
+		 }
+private: System::Void dataMedButton_Click(System::Object^  sender, System::EventArgs^  e) {
+			OpenFileDialog^ openFileDialog1 = gcnew OpenFileDialog;
+				 
+			openFileDialog1->Filter = "pdf files |*.PDF";
+
+			// Show the Dialog.
+			// If the user clicked OK in the dialog end a file was selected, open it.
+			if(openFileDialog1->ShowDialog() == System::Windows::Forms::DialogResult::OK)
+			{
+				String^ fileName = System::IO::Path::GetFileName(openFileDialog1->FileName);
+				String^ path = System::IO::Path::GetDirectoryName(openFileDialog1->FileName);
+				//MessageBox::Show(path = path+"\\"+fileName,"Directory");
+				path = path+"\\"+fileName;
+				dataMedtextBox->Text = heatmapTemplateTextBox->Text + " " + path + " ";
+			}
+		 }
 };
 }
